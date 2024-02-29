@@ -1,0 +1,36 @@
+.home{
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+}
+.games{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap :20px;
+}
+.img_game{ 
+    
+    width: 300px;
+    height: 300px;
+    border-radius: 15%;
+    
+   object-fit: contain;
+}
+.img_game > img{ 
+    width: 100%;
+    height: 100%;
+    border-radius: 15%;
+    background-color: brown;
+}
+.img_game:hover{
+    width: 320px;
+    height: 310px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}

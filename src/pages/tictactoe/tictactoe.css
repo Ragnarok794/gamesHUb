@@ -1,0 +1,23 @@
+.tictactoe{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.tictactoe >button{
+    width: 10rem;
+}
+.gameBoardTic{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+   width: 100%;
+   
+}
+.gameBoardTic> button{
+    margin-bottom: 20px;
+width: 150px;
+}
