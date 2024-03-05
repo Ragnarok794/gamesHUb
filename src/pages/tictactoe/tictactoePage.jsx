@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import './tictactoe.css'
-import ButtonStartFinish from '../../components/button/buttonStartFinish'
+import './tictactoePage.css'
+import ButtonStartAndBack from '../../components/button/buttonStartAndBack'
 import TictactoeGame from '../../components/tictactoeGame/tictactoeGame'
-const TicTacToe = () => {
+const TicTacToePage = () => {
 const [display , setDisplay]=useState(false)
 
 const handleDisplay=(ev)=>{
@@ -17,11 +17,11 @@ const handleDisplay=(ev)=>{
            </div>}
 
         
-        <ButtonStartFinish onDataRecived={handleDisplay}/>
+        <ButtonStartAndBack onDataRecived={handleDisplay}/>
          
       
     </div>
   )
 }
 
-export default TicTacToe
+export default TicTacToePage

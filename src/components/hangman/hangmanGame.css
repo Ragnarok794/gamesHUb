@@ -1,0 +1,40 @@
+.Hangman{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+.Hangman >button{
+    width: 10rem;
+}
+.gameHangman{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+   width: 100%;
+   
+}
+.gameHangman> button{
+    margin-bottom: 20px;
+width: 150px;
+}
+._{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    
+    gap:20px;
+    
+}
+.input_button{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+

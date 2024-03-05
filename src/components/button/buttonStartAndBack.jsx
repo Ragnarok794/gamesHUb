@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const ButtonStartFinish = ({onDataRecived}) => {
+const ButtonStartAndBack = ({onDataRecived}) => {
     const [isStarted, setIsStarted]=useState(false)
     const [message,setMessage]=useState('Empezar partida')
     const navigate = useNavigate()
@@ -22,4 +22,4 @@ useEffect(()=>{onDataRecived(isStarted)},[isStarted])
   )
 }
 
-export default ButtonStartFinish
+export default ButtonStartAndBack

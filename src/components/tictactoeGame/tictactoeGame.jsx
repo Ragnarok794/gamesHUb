@@ -17,10 +17,12 @@ const TictactoeGame = () => {
         const [victorysO , setVictorysO]=useState(0)
         const [tie , setTie]=useState(0)
 
-    const handleClick =(rowIndex,colIndex)=>{
+    const handleClick =(rowIndex,colIndex,cell)=>{
         if(isAWinner === false){
+        if (cell === null){
+          turn === player1? setTurn(player2): setTurn(player1)}
        const updatedGame = [...game]     
-        turn === player1? setTurn(player2): setTurn(player1)
+        
      update(updatedGame,turn,rowIndex,colIndex,)
     const result =  testResult(updatedGame,player1,player2)
 
@@ -57,7 +59,7 @@ const TictactoeGame = () => {
           {  row.map((cell,colIndex)=>(
                 <td key={colIndex}>
             
-                    <button onClick={()=>handleClick(rowIndex,colIndex)} value={cell}>{cell}</button>
+                    <button onClick={()=>handleClick(rowIndex,colIndex,cell)} value={cell}>{cell}</button>
                 </td>))}  
         </tr>
         ))}

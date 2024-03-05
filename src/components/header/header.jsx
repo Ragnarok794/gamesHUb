@@ -6,7 +6,7 @@ const Header = () => {
     const location = useLocation()
     const defaultName = 'GamesHub'
     const[name,setName]=useState(defaultName)
-    console.log(location)
+ 
     useEffect(()=>{ 
         if(location.pathname !== '/'){
         setName(location.pathname.substring(1))}
