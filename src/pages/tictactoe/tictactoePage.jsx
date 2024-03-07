@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import './tictactoePage.css'
-import ButtonStartAndBack from '../../components/button/buttonStartAndBack'
+import ButtonStartAndBack from '../../components/buttonStartAndBack/buttonStartAndBack'
 import TictactoeGame from '../../components/tictactoeGame/tictactoeGame'
 import PopupMessage from '../../components/Popup/PopupMessage'
 const TicTacToePage = () => {

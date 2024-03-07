@@ -1,0 +1,25 @@
+.Sudokupage{
+    padding-top: 150px;
+    height: 80%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+.Sudokupage >button{
+    width: 10rem;
+}
+.Sudokugame{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+   width: 100%;
+   
+}
+.Sudokugame> button{
+    margin-bottom: 20px;
+width: 150px;
+}
