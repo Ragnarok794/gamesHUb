@@ -32,15 +32,15 @@ export const testResult =(updatedGame,player1,player2)=>{
         }   
         }
         if(colX === 3 || rowX === 3){
-            alert ('Gana jugador 1')
+           
             
             
             return winner = player1
             }
         if(colO === 3 || rowO === 3){
-                alert ('Gana jugador 2')
+               
                 
-                return winner =player2
+                return winner = player2
             } 
              colX = 0
              colO = 0
@@ -53,18 +53,18 @@ export const testResult =(updatedGame,player1,player2)=>{
             (updatedGame[0][0] === player1 && updatedGame[1][1] === player1 && updatedGame[2][2] === player1) ||
             (updatedGame[0][2] === player1 && updatedGame[1][1] === player1 && updatedGame[2][0] === player1)
         ) {
-            alert('¡Gana jugador 1!');
+           
             return winner = player1
         } else if (
             (updatedGame[0][0] === player2 && updatedGame[1][1] === player2 && updatedGame[2][2] === player2) ||
             (updatedGame[0][2] === player2 && updatedGame[1][1] === player2 && updatedGame[2][0] === player2)
         ) {
-            alert('¡Gana jugador 2!');
+           
             return winner = player2
         }
 
         if(!winner && counterforTie <= 0){
-            alert('Es empate')
+           
             return winner = 'tie'
             
         } 

@@ -1,0 +1,84 @@
+.manDraw{
+    background-image: url('/public/hang.png');
+    background-size: cover;
+    height: 400px;
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.bodyDraw{
+    position: absolute;
+    right: 1px;
+    top: 35px;
+}
+.bodyDraw.lose{
+    top: 50px
+}
+.headpng{
+    position:absolute;
+    top:100px;
+    right: 34px;
+    width: 150px;
+z-index: 1;
+display: none;
+}
+.headpng.visible{
+    display: block;
+    transition: 0.5s;
+}
+.headpng.hidden{
+    display: none;
+}
+.bodypng{
+    position: absolute;
+    top:155px;
+    right: 85px;
+    height: 100px;
+    width: 50px;
+    display: none;
+}
+.bodypng.visible{
+    display: block;
+}
+.bodypng.hidden{
+    display:none
+}
+.armspng{
+position: absolute;
+top:150px;
+right: 40px;
+    height: 150px;
+    width: 150px;
+    display: none;
+}
+.armspng.visible{
+    display: block;
+}
+.armspng.hidden{
+    display: none;
+}
+.legspng{
+    position: absolute;
+    top: 205px;
+    right: 43px;
+    height: 60px;
+    width: 130px;
+    display: none;
+}
+.legspng.visible{
+    display: block;
+}
+.legspng.hidden{
+    display: none;
+}
+.floorpng{
+    position: absolute;
+    top:300px;
+    right: 10px;
+    height: 80px;
+    width: 200px;
+    
+}
+.floorpng.visible{
+    right: -130px;
+}

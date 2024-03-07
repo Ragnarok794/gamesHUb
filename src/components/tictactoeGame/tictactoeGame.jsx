@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './tictactoeGame.css'
 import { update } from '../../utils/TictacToeUtils/Update';
 import { testResult } from '../../utils/TictacToeUtils/TestResult';
-const TictactoeGame = () => {
+const TictactoeGame = ({onDataRecived}) => {
     const gamedefault= [
         [null, null, null],
         [null, null, null],
@@ -30,16 +30,20 @@ const TictactoeGame = () => {
       setIsAWinner(true)
       let counterVicotry = victorysX +1
       setVictorysX(counterVicotry)}
+      onDataRecived(result)
 
     if (result === player2){
         setIsAWinner(true)
         let counterVicotry = victorysO +1
-        setVictorysO(counterVicotry)}
+        setVictorysO(counterVicotry)
+        onDataRecived(result)
+      }
 
     if (result === 'tie'){
           setIsAWinner(true)
           let counterTies = tie +1
-          setTie(counterTies)}
+          setTie(counterTies)
+          onDataRecived(result)}
 }
     }
   
@@ -69,7 +73,8 @@ const TictactoeGame = () => {
     <button onClick={()=>{
       setGame(gamedefault); 
       setTurn(player1);
-       setIsAWinner(false)
+       setIsAWinner(false);
+       onDataRecived('')
        }}>Finalizar juego</button>
     </>
   )

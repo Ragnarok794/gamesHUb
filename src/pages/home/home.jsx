@@ -3,11 +3,11 @@ import './home.css'
 
 import { NavLink } from 'react-router-dom'
 const Home = () => {
-  const routes = ['TicTacToe','Hangman','Sudoku']
+  const games = ['TicTacToe','Hangman','Sudoku']
 
   return (
     <div className='home'>
-          {routes.map((route)=>
+          {games.map((route)=>
           <div className='games' key={route}>
               <NavLink to={route}>
             <div className='img_game'>

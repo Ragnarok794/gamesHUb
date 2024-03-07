@@ -1,0 +1,28 @@
+.popup-message {
+    position: fixed;
+    top: 200px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(71, 199, 25, 0.8);
+    color: white;
+    border-radius: 5px;
+   padding: 1px 20px;
+    opacity: 0; 
+    z-index: 100;
+  }
+  .tie {
+    background-color: rgba(225, 194, 16, 0.8);
+  }
+  .lose{
+    background-color: rgba(199, 31, 25, 0.8);
+  }
+  .popup-message.visible {
+    transition: opacity 0.5s;
+    opacity: 1;
+     
+  }
+  
+  .popup-message.hidden { 
+    transition: opacity 0.5s;
+    opacity: 0; 
+  }

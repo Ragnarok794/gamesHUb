@@ -18,7 +18,9 @@ useEffect(()=>{onDataRecived(isStarted)},[isStarted])
 
 
   return (
-    <button onClick={handleClick}>{message}</button>
+    <div className='ButtonStartAndBack'>
+    <button  onClick={handleClick}>{message}</button>
+    </div>
   )
 }
 

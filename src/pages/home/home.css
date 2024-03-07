@@ -3,8 +3,8 @@
     gap: 60px;
     justify-content: center;
     align-items: center;
-    height: 100%
-    /* width: auto; */
+    height: 100vh;
+
 }
 .games{
     display: flex;
@@ -37,7 +37,7 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
 @media screen and (max-width: 1057px) {
 .home{
-    
+    padding-top: 150px;
         flex-direction: column;
         gap:30px;
     }
