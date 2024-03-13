@@ -35,12 +35,12 @@ export const testResult =(updatedGame,player1,player2)=>{
            
             
             
-            return winner = player1
+            return winner = '❌'
             }
         if(colO === 3 || rowO === 3){
                
                 
-                return winner = player2
+                return winner = '⭕'
             } 
              colX = 0
              colO = 0
@@ -54,13 +54,13 @@ export const testResult =(updatedGame,player1,player2)=>{
             (updatedGame[0][2] === player1 && updatedGame[1][1] === player1 && updatedGame[2][0] === player1)
         ) {
            
-            return winner = player1
+            return winner = '❌'
         } else if (
             (updatedGame[0][0] === player2 && updatedGame[1][1] === player2 && updatedGame[2][2] === player2) ||
             (updatedGame[0][2] === player2 && updatedGame[1][1] === player2 && updatedGame[2][0] === player2)
         ) {
            
-            return winner = player2
+            return winner =  '⭕'
         }
 
         if(!winner && counterforTie <= 0){

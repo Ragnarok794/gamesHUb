@@ -1,6 +1,6 @@
 
 export const tester = (query, word,wrongLetters)=>{  
-console.log(query,word,wrongLetters)
+
     const  array_word = word.toUpperCase().split('')
   
     let correctLetter =[]
@@ -9,9 +9,11 @@ console.log(query,word,wrongLetters)
          {
             if(letter === query.toUpperCase()){
                 correctLetter.push({letter,index: i})
+               
             }});
             if(correctLetter.length === 0 && !wrongLetters.includes(query.toUpperCase())){
                 wrongLetter = query.toUpperCase()
+                
             }
            
     

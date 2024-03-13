@@ -1,48 +1,37 @@
 
-import { tester } from '../../utils/Hangman/Tester'
-import { transformWord } from '../../utils/Hangman/TransformWord'
-import { chooseRandomWord } from '../../utils/Hangman/ChooseRandomWord'
-import { words } from '../../utils/Hangman/Words'
-import updateGame from '../../utils/Hangman/UpdateGame'
-import testVicotory from '../../utils/Hangman/TestVicotory'
 const reducer = (state,action) => {
  switch(action.type){
-    case 'CheckRigthAndBadLetters':
-        const result = tester(action.payload,state.randomWord.word, state.wrongLetters)
-        if(result.wrongLetter !== null){
-            return {...state,wrongLetters:[...state.wrongLetters,result.wrongLetter]}
-        }
-        return {...state, correctLetters:[...state.correctLetters, result.correctLetter]}
-    case 'NewWord':
-        const random = chooseRandomWord(words)
-       
-        const gameWord = transformWord(random.word)
-
-        return {...state,
-        correctLetters: [],
-        wrongLetters: [],
-        data: '',
-        randomWord: random.word,
-        clue: random.clue,
-        game:gameWord.transformedLetters
-        }      
+    case 'GetCorrectLetters':
+        return {...state, correctLetters:[...state.correctLetters, action.payload]}
+    case 'GetWrongLetters':
+            return {...state,wrongLetters:[...state.wrongLetters,action.payload]}
     case 'UpdateGame':
-        const update = updateGame(state.game, state.correctLetters)
-        return{...state, game: update}
-    case 'testSolve':
-        const tested = testVicotory(state.game,state.wrongLetters)
-        console.log(tested)
-        if(tested === 'Victory'){
-            return {...state,
-                                        isAVictory:true,
-                                        data: tested        
-                                    }}
-        return {...state,data:tested}
+       
+        return{...state, game: action.payload}
     case 'Add a Victory':
         return {...state,
         victoryCounter:state.victoryCounter +1,
-        isAVictory:false
+        isFinished:true,
+        visibleWin: true
         }
+    case 'Add a Defeat':
+        return {...state,
+            DefeatCounter: state.DefeatCounter +1,
+            isFinished:true,
+            visibleDefeat: true
+        
+        } 
+        case 'NewWord':
+        return {...state,
+        correctLetters: [],
+        wrongLetters: [],
+        randomWord: action.payload.random.word,
+        clue: action.payload.random.clue,
+        game: action.payload.gameWord.transformedLetters,
+        isFinished:false,
+        visibleWin:false,
+        visibleDefeat:false
+        }   
         default: return {...state}
 }    
         

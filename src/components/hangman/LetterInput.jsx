@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './LetterInput.css'
-const LetterInput = ({onDataReceived}) => {
+const LetterInput = ({onDataReceived, isFinished}) => {
   const [inputValue, setInputValue] = useState('');
 
 const handleOnChange =(ev)=>{
@@ -8,7 +8,7 @@ setInputValue(ev.target.value)
 }
 
   const handleKeyPress =(ev)=>{
-    if(ev.key === 'Enter' ){
+    if(ev.key === 'Enter'&& !isFinished ){
         setInputValue('')   
     const value = event.target.value;
     

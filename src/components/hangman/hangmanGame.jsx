@@ -1,65 +1,41 @@
-import React, { useEffect, useState , useReducer} from 'react'
+import React, { useEffect} from 'react'
 import './hangmanGame.css'
 import LetterInput from './LetterInput'
 import ManDraw from './manDraw/manDraw'
-import reducer from '../../reducer/Hangman/reducer'
-import { initialStateGame } from '../../reducer/Hangman/initialStates'
+import {functionChecker,functionReset} from '../../reducer/Hangman/actions'
+import updateGame from '../../utils/Hangman/UpdateGame'
+import testVicotory from '../../utils/Hangman/TestVicotory'
 
-const HangmanGame = ({onDataRecived}) => {
 
- 
-const [state, dispatch]=useReducer(reducer, initialStateGame)
+const HangmanGame = ({state,dispatch}) => {
+
 
 const handleInput = (ev)=>{
-  dispatch({type: 'CheckRigthAndBadLetters', payload:(ev)})
-  dispatch({type: 'UpdateGame'})
-  dispatch({type: 'testSolve'})
-  
+  functionChecker(state,dispatch,ev)
 }
 const handleClick = () => {
-  dispatch({type: 'NewWord'})
+  functionReset(state,dispatch)
+ 
   
 }
-
-  // if (randomWord){
-  // const gameWord = transformWord(randomWord.word)
-  // setAnswer(randomWord.word)
-  // setClue(randomWord.clue)
-  // setGame(gameWord.transformedLetters)}
-
-
-
-// useEffect(() => {
-//    if (correctLetter.length > 0) {
-//     const result = updateGame(game, correctLetter)
-//       setGame(result);
-// }},[correctLetter])
-
-// useEffect(()=>{
-//   if(game){
-//  const result= testVicotory(game, wrongLetters)
-// onDataRecived(result)
-// if(result === 'Victory'){
-//   setIsAVictory(true)
-// }
-// }},[game])
-
-useEffect(()=>{ 
-  if(state.isAVictory){
-  dispatch({type: 'Add a Victory'})}
-  // if(isAVictory === true){
-  // setVictoryCounter(prevVictoryCounter => prevVictoryCounter + 1)
-  // console.log(victoryCounter)
-  // setIsAVictory(false)}
+useEffect(()=>{
+  const update = updateGame(state.game, state.correctLetters)
+  dispatch({type: 'UpdateGame', payload: update})
  
-},[state.isAVictory])
-useEffect(()=>{ onDataRecived(state.data)},[state.data])
+   const tested = testVicotory(update, state.wrongLetters)
 
-
-
+  if (tested === "Victory") {
+    dispatch({ type: "Add a Victory" })}
+  if (tested === 'Defeat'){
+        dispatch({type: 'Add a Defeat'})
+  }
+},[state.correctLetters])
+ 
   return (
-    <div> 
-      <p>Numero de victorias: {state.victoryCounter} </p>
+     <><div className='Counters'>
+      <p>Victorias: {state.victoryCounter} </p>
+      
+      <p>Derrotas: {state.DefeatCounter}</p></div>
       <ManDraw wrongLetters={state.wrongLetters}/>
      
         <p>Pista: {state.clue}</p>
@@ -71,13 +47,13 @@ useEffect(()=>{ onDataRecived(state.data)},[state.data])
           
        <p>Tienes un maximo de 5 letras erroneas</p>
         <p>Letras erroneas: {state.wrongLetters}</p>
-        <p>¡Cuidado, discrimina letras con accento o diaresis!</p>
+        <p>¡Cuidado, discrimina letras con acento o diaresis!</p>
         <div className='input_button'>
-        <LetterInput onDataReceived ={handleInput}/>
+        <LetterInput onDataReceived ={handleInput} isFinished={state.isFinished}/>
         <button onClick={handleClick}>Nueva palabra</button>
         </div>
-
-    </div>
+</>
+    
   )
 }
 

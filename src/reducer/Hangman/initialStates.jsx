@@ -8,8 +8,13 @@ clue:random.clue,
 game:game.transformedLetters,
 wrongLetters:[],
 correctLetters:[],
-randomWord:random,
-isAVictory:false,
+randomWord:random.word,
+isFinished:false,
 victoryCounter:0,
-data: ''
+DefeatCounter:0,
+visibleWin: false,
+visibleDefeat: false,
+
+
 }    
+

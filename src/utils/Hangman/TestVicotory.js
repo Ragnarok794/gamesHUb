@@ -13,8 +13,8 @@ console.log(wrongLetter)
     if(counterForVictory === game.length){
         return 'Victory'
     }
-    if(wrongLetter.length === 5){
-        return'Derrota'
+    if(wrongLetter.length >= 5){
+        return'Defeat'
     }
 
 }

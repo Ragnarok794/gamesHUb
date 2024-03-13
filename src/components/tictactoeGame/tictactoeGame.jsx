@@ -1,17 +1,17 @@
 import React, { useEffect, useReducer} from 'react'
 import './tictactoeGame.css'
-import reducer from '../../reducer/TicTacToe/reducer';
-import {initialStateGame} from '../../reducer/TicTacToe/initialStates';
+import { functionChecker } from '../../reducer/TicTacToe/actions'
+
  export   const player1 = '❌'
  export  const player2 = '⭕'
 
-const TictactoeGame = ({onDataRecived}) => {
+const TictactoeGame = ({state,dispatch}) => {
   
-const [state, dispatch]= useReducer(reducer, initialStateGame);
 
-const handleClick =(rowIndex,colIndex,cell)=>{
-  dispatch({type: 'game', payload:{row: rowIndex, col: colIndex, cell: cell}})}
-    useEffect(()=>{onDataRecived(state.result)},[state.result])
+const handleClick =(row,col,cell)=>{
+  functionChecker(state,dispatch, row,col,cell)
+}
+    
   
 
   return (
@@ -38,7 +38,6 @@ const handleClick =(rowIndex,colIndex,cell)=>{
     
     <button onClick={()=>{
       dispatch({type: 'reset_game'})
-       onDataRecived('')
        }}>Reiniciar juego</button>
     </>
   )

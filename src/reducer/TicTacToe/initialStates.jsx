@@ -1,7 +1,7 @@
 
   const player1 = '❌';
    
- export const initialStateGame = {
+ export const initialStateTIC = {
     game: [
     [null, null, null],
     [null, null, null],
@@ -12,14 +12,15 @@
     victorysX: 0,
     victorysO: 0,
     tie: 0,
-    result: '',
-}
-export const initialStatePage={
+     
     visible1:false,
     visible2: false,
     visibleTie: false,
     name: ''
-  };
+}
+
+   
+  
   
 
  
