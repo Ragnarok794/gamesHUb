@@ -1,89 +1,76 @@
-import React, { useEffect, useState ,useCallback} from 'react'
+import React, { useEffect, useState , useReducer} from 'react'
 import './hangmanGame.css'
-import { words } from '../../utils/Hangman/Words'
-import { chooseRandomWord } from '../../utils/Hangman/ChooseRandomWord'
-import { transformWord } from '../../utils/Hangman/TransformWord'
 import LetterInput from './LetterInput'
-import { tester } from '../../utils/Hangman/Tester'
-import updateGame from '../../utils/Hangman/UpdateGame'
-import testVicotory from '../../utils/Hangman/TestVicotory'
 import ManDraw from './manDraw/manDraw'
-
+import reducer from '../../reducer/Hangman/reducer'
+import { initialStateGame } from '../../reducer/Hangman/initialStates'
 
 const HangmanGame = ({onDataRecived}) => {
 
- const [answer ,setAnswer]=useState('')
- const [clue, setClue]=useState('')
- const [game,setGame]=useState('')
- const [randomWord, setRandomWord]=useState(()=>chooseRandomWord(words))
-const [wrongLetters, setWrongLetters]=useState('')
-const [correctLetter, setCorrectLetter]=useState('')
-const [isAVictory,setIsAVictory]=useState(false)
-const [victoryCounter,setVictoryCounter]=useState(0)
+ 
+const [state, dispatch]=useReducer(reducer, initialStateGame)
 
 const handleInput = (ev)=>{
-  const result = tester(ev,randomWord.word, wrongLetters)
- setCorrectLetter(prevcorrectLetters => [...prevcorrectLetters, result.correctLetter])
- console.log(result)
- if(result.wrongLetter !== null){
- setWrongLetters([...wrongLetters,result.wrongLetter])}
+  dispatch({type: 'CheckRigthAndBadLetters', payload:(ev)})
+  dispatch({type: 'UpdateGame'})
+  dispatch({type: 'testSolve'})
+  
 }
-
 const handleClick = () => {
-  setRandomWord(()=>chooseRandomWord(words))
-  setCorrectLetter([])
-  setWrongLetters([])
-  onDataRecived('')
+  dispatch({type: 'NewWord'})
   
 }
-useEffect(()=>{
-  if (randomWord){
-  const gameWord = transformWord(randomWord.word)
-  setAnswer(randomWord.word)
-  setClue(randomWord.clue)
-  setGame(gameWord.transformedLetters)}
-},[randomWord])
+
+  // if (randomWord){
+  // const gameWord = transformWord(randomWord.word)
+  // setAnswer(randomWord.word)
+  // setClue(randomWord.clue)
+  // setGame(gameWord.transformedLetters)}
 
 
-useEffect(() => {
-   if (correctLetter.length > 0) {
-    const result = updateGame(game, correctLetter)
-      setGame(result);
-}},[correctLetter])
 
-useEffect(()=>{
-  if(game){
- const result= testVicotory(game, wrongLetters)
-onDataRecived(result)
-if(result === 'Victory'){
-  setIsAVictory(true)
-}
-}},[game])
+// useEffect(() => {
+//    if (correctLetter.length > 0) {
+//     const result = updateGame(game, correctLetter)
+//       setGame(result);
+// }},[correctLetter])
+
+// useEffect(()=>{
+//   if(game){
+//  const result= testVicotory(game, wrongLetters)
+// onDataRecived(result)
+// if(result === 'Victory'){
+//   setIsAVictory(true)
+// }
+// }},[game])
+
 useEffect(()=>{ 
-  if(isAVictory === true){
-  setVictoryCounter(prevVictoryCounter => prevVictoryCounter + 1)
-  console.log(victoryCounter)
-  setIsAVictory(false)}
-  
-},[isAVictory])
-
+  if(state.isAVictory){
+  dispatch({type: 'Add a Victory'})}
+  // if(isAVictory === true){
+  // setVictoryCounter(prevVictoryCounter => prevVictoryCounter + 1)
+  // console.log(victoryCounter)
+  // setIsAVictory(false)}
+ 
+},[state.isAVictory])
+useEffect(()=>{ onDataRecived(state.data)},[state.data])
 
 
 
   return (
     <div> 
-      <p>Numero de victorias: {victoryCounter} </p>
-      <ManDraw wrongLetters={wrongLetters}/>
+      <p>Numero de victorias: {state.victoryCounter} </p>
+      <ManDraw wrongLetters={state.wrongLetters}/>
      
-        <p>Pista: {clue}</p>
+        <p>Pista: {state.clue}</p>
         <div className='_'>
-        {game && game.map((letter,i)=>(
+        {state.game && state.game.map((letter,i)=>(
               <h1 key={i}>{letter}</h1>
         ))}
         </div>
           
        <p>Tienes un maximo de 5 letras erroneas</p>
-        <p>Letras erroneas: {wrongLetters}</p>
+        <p>Letras erroneas: {state.wrongLetters}</p>
         <p>¡Cuidado, discrimina letras con accento o diaresis!</p>
         <div className='input_button'>
         <LetterInput onDataReceived ={handleInput}/>

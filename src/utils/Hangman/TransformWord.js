@@ -1,6 +1,7 @@
 
 
 export const transformWord = (word) =>{
+   
     const letter = word.split('')
     const transformedLetters = letter.map(()=>'_')
                      

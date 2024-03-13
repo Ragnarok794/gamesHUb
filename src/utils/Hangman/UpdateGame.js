@@ -1,7 +1,7 @@
-const updateGame = (game, correctLetter) => {
+const updateGame = (game, correctLetters) => {
     const updatedGame = [...game]; // Crear una copia del estado game
     
-    correctLetter.forEach((innerArray) => {
+    correctLetters.forEach((innerArray) => {
       innerArray.forEach((innerArrayObj) => {
         const { letter, index } = innerArrayObj;
         updatedGame[index] = letter;

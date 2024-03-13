@@ -1,6 +1,6 @@
 
 export const tester = (query, word,wrongLetters)=>{  
-
+console.log(query,word,wrongLetters)
     const  array_word = word.toUpperCase().split('')
   
     let correctLetter =[]
