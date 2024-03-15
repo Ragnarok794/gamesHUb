@@ -1,41 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import sudoku from 'sudoku';
 import './Sudokugame.css';
+import { createBoard, solved, writeCell } from '../../reducer/Sudoku/actionSudoku.jsx';
 
-const Sudokugame = () => {
-  const [sudokuBoard, setSudokuBoard] = useState(null);
-const [trigg,setTrigg]=useState(false)
-const [selected,setSelected]=useState(null)
+const Sudokugame = ({state,dispatch}) => {
   
-useEffect(() => {
-  if(!sudokuBoard){
-    const newBoard = sudoku.makepuzzle();
-    const boardMatrix = [];
-for (let i = 0; i < 9; i++) {
-  boardMatrix.push(newBoard.slice(i * 9, (i + 1) * 9));
-}
- setSudokuBoard([...boardMatrix]);
-
- } console.log('me renderizo')},[trigg]);
-
-  const handleNumberSelect=(i)=>{
-setSelected(i)
+useEffect(()=>{
+  createBoard(state,dispatch)
+},[state.trigg])
+const handleClick= () => {
+  dispatch({type: 'New Game'})
   }
-  const handleCell=(rowIndex,colIndex)=>{
+  const handleNumberSelect=(i)=>{
+    dispatch({type:'Number Selected', payload:(i)})
 
-    const newBoard = [...sudokuBoard];
-
-    if(newBoard[rowIndex][colIndex] === null){
-     newBoard[rowIndex][colIndex]= selected 
-     setSudokuBoard(newBoard);}
+  }
+const handleCell=(rowIndex,colIndex)=>{
+writeCell(state,dispatch,rowIndex,colIndex)
   }
 
 
   return (<>
     <div className='table-container'>
+      <p>Fallos: {state.failscounter}</p>
     <table>
       <tbody>
-        {sudokuBoard && sudokuBoard.map((row, rowIndex) => (
+        {state.sudokuBoard && state.sudokuBoard.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, colIndex) => (
               <td key={colIndex} onClick={()=>handleCell(rowIndex,colIndex,)}>{cell === '.' ? '' : cell}</td>
@@ -46,11 +36,12 @@ setSelected(i)
     </table>
     <br/>
     <div className='numbers'>
-    {Array.from({length : 10}).map((_,i)=>(
-      <div key={i} onClick={()=>handleNumberSelect(i)} className={`number ${selected === i ? 'selected': ''}`}><h5>{i}</h5></div>
+    {Array.from({length : 9}).map((_,i)=>(
+      <div key={i} onClick={()=>handleNumberSelect(i)} className={`number ${state.selected === i ? 'selected': ''}`}><h5 >{i}</h5></div>
     ))}
     </div></div>
-    <button onClick={()=>{setSudokuBoard(''); setTrigg(prevtrigg => !prevtrigg)}}>Nueva partida</button>
+    <button onClick={handleClick}>Nueva partida</button>
+    <button onClick={()=>{ solved(state,dispatch)}}>solved</button>
     </>
   )
 };

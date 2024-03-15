@@ -1,35 +1,22 @@
-import React,{useState} from 'react'
+import React,{useReducer, useState} from 'react'
 import './SudokuPage.css'
 import Sudokugame from '../../components/Sudoku/Sudokugame'
 import ButtonStartAndBack from '../../components/buttonStartAndBack/buttonStartAndBack'
 import PopupMessage from '../../components/Popup/PopupMessage'
+import reducerSudoku from '../../reducer/Sudoku/reducerSudoku'
+import initialStateSudoku from '../../reducer/Sudoku/initialStateSudoku.js'
 const SudokuPage = () => {
+  const[state, dispatch]=useReducer(reducerSudoku,initialStateSudoku)
   const [display , setDisplay]=useState(false)
-  // const [visible1, setVisible1]=useState(false)
-  // const [visible2, setVisible2]=useState(false)
-  // const [name, setName]=useState('')
+
   const handleDisplay=(ev)=>{
   setDisplay(ev)}
-// const win = (ev)=>{
-// if(ev === 'Victory'){
-//   setVisible1(true)}
-// if(ev === 'Derrota'){
-//   setVisible2(true)
-//   setName('lose')
-// }
-// if (ev == ''){
-//   setVisible1(false)
-//   setVisible2(false)
-// }
-
-
-
 
   return (
     <div className='Sudokupage'>
     {display === true && 
     <div className='Sudokugame'>
-      <Sudokugame  /> 
+      <Sudokugame state={state} dispatch={dispatch} /> 
       {/* onDataRecived={win}      */}
        </div>}
        {/* <PopupMessage message={'Victoria!!'} visible={visible1}/>

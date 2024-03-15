@@ -42,8 +42,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
     border: 1px solid #000;
     background-color: rgb(252, 252, 252);
     color: #000;
@@ -54,3 +54,9 @@
 .selected{
     background-color: rgb(96, 93, 93);
 }
+.rigth{
+  color: rgb(139, 139, 224)
+}
+.wrong{
+  color :red}
+

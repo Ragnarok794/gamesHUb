@@ -11,7 +11,7 @@
     right: 1px;
     top: 35px;
 }
-.bodyDraw.lose{
+.bodyDraw.Defeat{
     top: 50px
 }
 .headpng{
@@ -32,10 +32,11 @@ display: none;
 .bodypng{
     position: absolute;
     top:155px;
-    right: 85px;
-    height: 100px;
-    width: 50px;
+    right: 93px;
+    height: 60px;
+    width: 30px;
     display: none;
+
 }
 .bodypng.visible{
     display: block;
