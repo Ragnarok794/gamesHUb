@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import sudoku from 'sudoku';
+import React, { useEffect } from 'react';
+
 import './Sudokugame.css';
 import { createBoard, solved, writeCell } from '../../reducer/Sudoku/actionSudoku.jsx';
 
 const Sudokugame = ({state,dispatch}) => {
-  
+
+
 useEffect(()=>{
   createBoard(state,dispatch)
 },[state.trigg])
@@ -28,7 +29,10 @@ writeCell(state,dispatch,rowIndex,colIndex)
         {state.sudokuBoard && state.sudokuBoard.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, colIndex) => (
-              <td key={colIndex} onClick={()=>handleCell(rowIndex,colIndex,)}>{cell === '.' ? '' : cell}</td>
+              <td key={colIndex} 
+              onClick={()=>handleCell(rowIndex,colIndex,)}
+              className={state.sudokuBoard[rowIndex][colIndex] !== null && state.sudokuBoard[rowIndex][colIndex]=== state.boardSolved[rowIndex][colIndex] ? 'correct' : 'wrong'}
+              >{cell === '.' ? '' : cell}</td>
             ))}
           </tr>
         ))}

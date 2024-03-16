@@ -11,36 +11,47 @@ export const createBoard =(state,dispatch)=>{
     for (let i = 0; i < 9; i++) {
       boardMatrix.push(newBoard.slice(i * 9, (i + 1) * 9));
       boardSolved.push(solution.slice(i * 9, (i + 1) * 9))
-    }
+    }console.log(boardSolved)
     dispatch({type: 'Board', payload:{board: boardMatrix, puzzle: newBoard}})
     dispatch({type: 'Solution to compare', payload:{boardSolved:boardSolved,solution: solution}})
 }
 }
 export const writeCell =(state,dispatch,rowIndex,colIndex)=>{
-  const Board = [...state.sudokuBoard];
-  const Solved = [...state.boardSolved]
-  if(Board[rowIndex][colIndex] === null || Board[rowIndex][colIndex] !==Solved[rowIndex][colIndex]){
-   Board[rowIndex][colIndex]= state.selected 
-   dispatch({type:'Update Board', payload: Board})
+  const board = [...state.sudokuBoard];
+  const solved = [...state.boardSolved]
+  let rowcorrect= 0
+  if(board[rowIndex][colIndex] === null || board[rowIndex][colIndex] !==solved[rowIndex][colIndex]){
+   board[rowIndex][colIndex]= state.selected 
+    board[rowIndex][colIndex] ===solved[rowIndex][colIndex]? '': dispatch({type: 'its Wrong'})
+   dispatch({type:'Update Board', payload: board})
+   for (let i = 0; i < board.length; i++){
+    
+    if(JSON.stringify(board[i]) === JSON.stringify(solved[i]))
+    {rowcorrect ++
+      }
+    if(rowcorrect === 9){
+ 
+      dispatch({type: 'Victory'})}
+  } 
   ;}
-  Board[rowIndex][colIndex] ===Solved[rowIndex][colIndex]? '': dispatch({type: 'its Wrong'})
+ 
     
   
 }
 export const solved =(state,dispatch)=>{
-  
-  console.log(state.solution)
-  console.log(state.puzzle)
-  console.log(state.sudokuBoard)
+  const board =[...state.sudokuBoard]
+  const solved = [...state.boardSolved]
+ 
+  const result = window.confirm("¿Estás seguro de querer continuar, si no has completado el tablero perderas la partida?");
+  if (result) {
+    board.forEach(element => {
+      if (element.includes(null)){
+    dispatch({type:'Defeat' ,payload: solved})
+  }})
+ 
+
 }
-// const win = (ev)=>{
-// if(ev === 'Victory'){
-//   setVisible1(true)}
-// if(ev === 'Derrota'){
-//   setVisible2(true)
-//   setName('lose')
-// }
-// if (ev == ''){
-//   setVisible1(false)
-//   setVisible2(false)
-// }
+    
+  } 
+
+

@@ -8,10 +8,9 @@ const initialStateSudoku =  {
     boardSolved: null,
     trigg:false,
     selected:false,
-    newData: null,
+    message: null,
     failscounter:0,
-    visibleWin:false,
-    visibleDefeat:false,
+    visible:false,
     defeat:false
  
 }

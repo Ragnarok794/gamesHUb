@@ -17,10 +17,10 @@ const SudokuPage = () => {
     {display === true && 
     <div className='Sudokugame'>
       <Sudokugame state={state} dispatch={dispatch} /> 
-      {/* onDataRecived={win}      */}
+  
        </div>}
-       {/* <PopupMessage message={'Victoria!!'} visible={visible1}/>
-            <PopupMessage message={'Derrota!!'} name={name} visible={visible2}/> */}
+       
+            <PopupMessage message={state.message} name={state.defeat} visible={state.visible}/> 
 
     
     <ButtonStartAndBack onDataRecived={handleDisplay}/>
