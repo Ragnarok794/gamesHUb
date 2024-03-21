@@ -5,15 +5,47 @@ header{
     justify-content: center;
     align-items: center;
     background-color: rgba(250, 169, 18, 0.898);
+   
   }
-.header_div{display: flex;
+.header_div{
+ 
+  display: flex;
   justify-content: center;
   align-items: center;
 gap: 20px}
-@media screen and (max-width: 595px)
- {
-.h1 {display: none;
+.buttonsLog{
+  padding-left: 100px;
+  right: 10px;
+  display: flex;
+  justify-self: end;
+  gap: 20px
 
 }
+@media screen and (max-width: 1111px){
+  header{
+    justify-content: space-around;
+  }
+  .h1 {display: none;
 
+  }
+  
+}
+@media screen and (max-width: 808px)
+ {
+header{justify-content: space-around;
+height: auto;}
+
+
+
+.buttonsLog {
+  
+  position:relative;
+  flex-direction: column;
+}
+}
+@media screen and (max-width: 421px){
+  
+  .buttonsLog{display:none
+}
+  
 }

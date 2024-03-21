@@ -1,0 +1,4 @@
+.form-container.fail input[type="password"],.form-container.fail input[type="text"] {
+    border: 1px solid #f63737;
+    color: red
+}

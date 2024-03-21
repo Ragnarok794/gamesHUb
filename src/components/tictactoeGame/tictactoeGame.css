@@ -4,22 +4,23 @@
     gap: 30px;
 }
 
-table{
+.tableTicTac
+{
   
     height: 400px;
     width: 400px;
     margin-bottom: 20px;
 }
 
-th{
+.tableTicTac th{
     width: 100%;
 }
-td{ 
+.tableTicTac td{ 
     width: 33%;
     height: 33%;
   position: relative;
 }
-td >button{
+.tableTicTac td >button{
     height: 100%;
     width: 100%;
     background-color: rgba(228, 154, 26, 0.772);

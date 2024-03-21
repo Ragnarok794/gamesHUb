@@ -5,7 +5,7 @@ import { words } from "../../utils/Hangman/Words";
 
 
 export const functionChecker = (state, dispatch, ev) => {
-  console.log(state)
+ 
   const result = tester(ev, state.randomWord, state.wrongLetters);
   dispatch({ type: "GetCorrectLetters" ,payload: result.correctLetter });
   if (result.wrongLetter !== null) {

@@ -1,13 +1,12 @@
 import React from 'react'
 import './home.css'
-
+import {useBookmarks} from '../../hooks/useBookmarkContext'
 import { NavLink } from 'react-router-dom'
 const Home = () => {
-  const games = ['TicTacToe','Hangman','Sudoku']
-
+  const {stateContext}=useBookmarks()
   return (
     <div className='home'>
-          {games.map((route)=>
+          {stateContext.games.map((route)=>
           <div className='games' key={route}>
               <NavLink to={route}>
             <div className='img_game'>

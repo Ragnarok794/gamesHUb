@@ -5,10 +5,13 @@ import ManDraw from './manDraw/manDraw'
 import {functionChecker,functionReset} from '../../reducer/Hangman/actions'
 import updateGame from '../../utils/Hangman/UpdateGame'
 import testVicotory from '../../utils/Hangman/TestVicotory'
+import { useAuth } from '../../hooks/useAuth'
+import { useBookmarks } from '../../hooks/useBookmarkContext'
 
 
 const HangmanGame = ({state,dispatch}) => {
-
+const {user}= useAuth()
+const {stateContext, dispatchContext}=useBookmarks()
 
 const handleInput = (ev)=>{
   functionChecker(state,dispatch,ev)
@@ -25,17 +28,27 @@ useEffect(()=>{
    const tested = testVicotory(update, state.wrongLetters)
 
   if (tested === "Victory") {
-    dispatch({ type: "Add a Victory" })}
+    dispatch({ type: "Add a Victory" })
+  if(user){
+    dispatchContext({type: "Add a Victory"})
+  }
+  }
   if (tested === 'Defeat'){
         dispatch({type: 'Add a Defeat'})
+        if(user){
+          dispatchContext({type: 'Add a Defeat'})
+        }
   }
 },[state.correctLetters])
  
   return (
      <><div className='Counters'>
-      <p>Victorias: {state.victoryCounter} </p>
+      {user?<><p>Victorias: {stateContext.victoriesHangman} </p>
       
-      <p>Derrotas: {state.DefeatCounter}</p></div>
+      <p>Derrotas: {stateContext.defeatHangman}</p></>:<><p>Victorias: {state.victoryCounter} </p>
+      
+      <p>Derrotas: {state.DefeatCounter}</p> </>}
+      </div>
       <ManDraw wrongLetters={state.wrongLetters}/>
      
         <p>Pista: {state.clue}</p>
@@ -50,8 +63,9 @@ useEffect(()=>{
         <p>¡Cuidado, discrimina letras con acento o diaresis!</p>
         <div className='input_button'>
         <LetterInput onDataReceived ={handleInput} isFinished={state.isFinished}/>
-        <button onClick={handleClick}>Nueva palabra</button>
         </div>
+        <button onClick={handleClick}>Nueva palabra</button>
+        
 </>
     
   )

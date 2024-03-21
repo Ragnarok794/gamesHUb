@@ -11,7 +11,9 @@ const initialStateSudoku =  {
     message: null,
     failscounter:0,
     visible:false,
-    defeat:false
+    defeat:false,
+    victoryCounter: 0 ,
+    surrenderCounter: 0
  
 }
 

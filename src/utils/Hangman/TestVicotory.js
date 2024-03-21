@@ -2,7 +2,7 @@
 
 const testVicotory = (game, wrongLetter) => {
  let counterForVictory = 0
-console.log(wrongLetter)
+
 
     game.forEach(letter => {
         if(letter !== '_'){

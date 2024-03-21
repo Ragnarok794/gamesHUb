@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 
 import './Sudokugame.css';
-import { createBoard, solved, writeCell } from '../../reducer/Sudoku/actionSudoku.jsx';
-
+import { createBoard, solved, writeCell } from '../../reducer/Sudoku/actionSudoku';
+import {useAuth} from '../../hooks/useAuth'
+import {useBookmarks} from '../../hooks/useBookmarkContext.jsx'
 const Sudokugame = ({state,dispatch}) => {
-
-
+const {user}=useAuth()
+const {stateContext,dispatchContext}=useBookmarks()
 useEffect(()=>{
   createBoard(state,dispatch)
 },[state.trigg])
@@ -17,12 +18,16 @@ const handleClick= () => {
 
   }
 const handleCell=(rowIndex,colIndex)=>{
-writeCell(state,dispatch,rowIndex,colIndex)
+writeCell(state,dispatch,rowIndex,colIndex,user,dispatchContext)
   }
 
 
   return (<>
     <div className='table-container'>
+      {user ? <> <p>Victorias: {stateContext.victoriesSudoku}</p>
+      <p>Rendiciones: {stateContext.defeatSudoku}</p></>:<> <p>Victorias: {state.victoryCounter}</p>
+      <p>Rendiciones: {state.surrenderCounter}</p></>}
+     
       <p>Fallos: {state.failscounter}</p>
     <table>
       <tbody>
@@ -45,7 +50,7 @@ writeCell(state,dispatch,rowIndex,colIndex)
     ))}
     </div></div>
     <button onClick={handleClick}>Nueva partida</button>
-    <button onClick={()=>{ solved(state,dispatch)}}>solved</button>
+    <button onClick={()=>{ solved(state,dispatch,user,dispatchContext)}}>Resolver</button>
     </>
   )
 };

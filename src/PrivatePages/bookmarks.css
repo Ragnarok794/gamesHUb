@@ -1,0 +1,54 @@
+.bookmarkContainer{
+    display:flex ;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmarkTableContainer {
+  margin: 20px;
+  
+}
+
+.tableBookmark {
+    width: 100%;
+  border-collapse: collapse;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableBookmark tr,
+.tableBookmark td {
+    border-left:1px solid #ddd; 
+    padding: 12px 8px;
+    border-bottom:1px solid #ddd;
+    text-align: center;
+    
+}
+
+.tableBookmark tr {
+ 
+ 
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;}
+
+.Table2 tr,.Table2 td{
+  border-left: none;
+  border-bottom:1px solid #ddd;
+
+}
+
+
+.head{
+  background-color: #2e75cc;
+}
+.victories {
+   background-color: #2ecc71;
+  
+  }
+  
+  .defeats {
+    background-color: #e74c3c;
+  }

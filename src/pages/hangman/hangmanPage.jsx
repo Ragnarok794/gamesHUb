@@ -21,8 +21,8 @@ const HangmanPage = () => {
     <div className='gameHangman'>
       <HangmanGame state={state} dispatch={dispatch} />      
        </div>}
-       <PopupMessage message={'Victoria!!'} visible={state.visibleWin}/>
-            <PopupMessage message={'Derrota!!'} name={'Defeat'} visible={state.visibleDefeat}/>
+       <PopupMessage message={state.message} name={state.name} visible={state.visibleFinish}/>
+
 
     
     <ButtonStartAndBack onDataRecived={handleDisplay}/>

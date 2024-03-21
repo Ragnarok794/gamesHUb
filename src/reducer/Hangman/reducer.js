@@ -12,13 +12,16 @@ const reducer = (state,action) => {
         return {...state,
         victoryCounter:state.victoryCounter +1,
         isFinished:true,
-        visibleWin: true
+        visibleFinish: true,
+        message: 'Victoria!!'
         }
     case 'Add a Defeat':
         return {...state,
             DefeatCounter: state.DefeatCounter +1,
             isFinished:true,
-            visibleDefeat: true
+            visibleFinish: true,
+            name: 'Defeat',
+            message: `Derrota!! La palabra es ${state.randomWord}`
         
         } 
         case 'NewWord':
@@ -29,8 +32,8 @@ const reducer = (state,action) => {
         clue: action.payload.random.clue,
         game: action.payload.gameWord.transformedLetters,
         isFinished:false,
-        visibleWin:false,
-        visibleDefeat:false
+        visibleFinish:false,
+       
         }   
         default: return {...state}
 }    

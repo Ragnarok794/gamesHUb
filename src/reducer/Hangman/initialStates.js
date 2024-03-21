@@ -12,8 +12,10 @@ randomWord:random.word,
 isFinished:false,
 victoryCounter:0,
 DefeatCounter:0,
-visibleWin: false,
-visibleDefeat: false,
+visibleFinish: false,
+message: null,
+name: null
+
 
 
 }    
