@@ -21,25 +21,16 @@ const TictactoeGame = ({ state, dispatch }) => {
   return (
     <>
       <div className="containter_tictac">
-        {user ? (
+        
           <>
             <p>
-              Jugador 1: {player1} Victorias: {stateContext.victoriesTictacToeX}{" "}
+              Jugador 1: {player1} Victorias:{user? stateContext.victoriesTictacToeX: state.victorysX}{" "}
             </p>{" "}
             <p>
-              Jugador 2: {player2} Victorias: {stateContext.victoriesTictacToeO}
+              Jugador 2: {player2} Victorias: { user?  stateContext.victoriesTictacToeO : state.victorysO}
             </p>
           </>
-        ) : (
-          <>
-            <p>
-              Jugador 1: {player1} Victorias: {state.victorysX}{" "}
-            </p>{" "}
-            <p>
-              Jugador 2: {player2} Victorias: {state.victorysO}
-            </p>
-          </>
-        )}
+     
 
         <p>Empates: {state.tie}</p>
 

@@ -33,3 +33,12 @@
     }
     
 }
+@media screen and (max-width: 488px) {
+    .tableTicTac
+{
+  
+    height: 300px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+}
